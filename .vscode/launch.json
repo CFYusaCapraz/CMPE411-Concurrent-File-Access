@@ -6,16 +6,17 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
+            "name": "Client",
             "request": "launch",
-            "mainClass": "${file}"
+            "console": "integratedTerminal",
+            "mainClass": "com.cyberfreak.file_access.Client"
         },
         {
             "type": "java",
-            "name": "App",
+            "name": "Server",
             "request": "launch",
-            "mainClass": "App",
-            "projectName": "Concurrent_File_Access_93df7d0e"
+            "console": "integratedTerminal",
+            "mainClass": "com.cyberfreak.file_access.App"
         }
     ]
 }
