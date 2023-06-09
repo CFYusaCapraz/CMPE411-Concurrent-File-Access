@@ -9,14 +9,14 @@
             "name": "Client",
             "request": "launch",
             "console": "integratedTerminal",
-            "mainClass": "com.cyberfreak.file_access.Client"
+            "mainClass": "com.cyberfreak.file_access.client.Client"
         },
         {
             "type": "java",
             "name": "Server",
             "request": "launch",
             "console": "integratedTerminal",
-            "mainClass": "com.cyberfreak.file_access.Server"
+            "mainClass": "com.cyberfreak.file_access.server.Server"
         }
     ]
 }

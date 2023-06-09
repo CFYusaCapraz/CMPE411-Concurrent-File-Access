@@ -1,4 +1,4 @@
-package com.cyberfreak.file_access;
+package com.cyberfreak.file_access.server;
 
 import java.io.BufferedReader;
 import java.io.File;

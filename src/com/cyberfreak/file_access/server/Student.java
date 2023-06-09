@@ -1,4 +1,4 @@
-package com.cyberfreak.file_access;
+package com.cyberfreak.file_access.server;
 
 public class Student {
     private String studentID;
