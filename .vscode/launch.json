@@ -16,7 +16,7 @@
             "name": "Server",
             "request": "launch",
             "console": "integratedTerminal",
-            "mainClass": "com.cyberfreak.file_access.App"
+            "mainClass": "com.cyberfreak.file_access.Server"
         }
     ]
 }

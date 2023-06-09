@@ -28,4 +28,10 @@ public class Server implements Runnable {
         }
     }
 
+    public static void main(String[] args) throws InterruptedException {
+        Thread t = new Thread(new Server(8000, "students.txt"));
+        t.start();
+        t.join();
+    }
+
 }
