@@ -5,13 +5,13 @@ public class Student {
     private String studentName;
     private String studentCGPA;
     private String studentBirthday;
-    private char studentGender;
+    private String studentGender;
 
     public Student() {
     }
 
     public Student(String studentID, String studentName, String studentCGPA, String studentBirthday,
-            char studentGender) {
+            String studentGender) {
         this.studentID = studentID;
         this.studentName = studentName;
         this.studentCGPA = studentCGPA;
@@ -51,11 +51,11 @@ public class Student {
         this.studentBirthday = studentBirthday;
     }
 
-    public char getStudentGender() {
+    public String getStudentGender() {
         return this.studentGender;
     }
 
-    public void setStudentGender(char studentGender) {
+    public void setStudentGender(String studentGender) {
         this.studentGender = studentGender;
     }
 
