@@ -40,9 +40,10 @@ public class StudentManager {
             ListIterator<Student> it = studentList.listIterator();
             while (it.hasNext()) {
                 Student tmp = it.next();
-                pWriter.printf("%4s,%-30s,%4s,%10s,%1s%s", tmp.getStudentID(), tmp.getStudentName(),
-                        tmp.getStudentCGPA(),
-                        tmp.getStudentBirthday(), tmp.getStudentGender(), System.getProperty("line.separator"));
+                String data = String.format("%4s,%-30s,%4s,%10s,%1s", tmp.getStudentID(), tmp.getStudentName(),
+                tmp.getStudentCGPA(),
+                tmp.getStudentBirthday(), tmp.getStudentGender());
+                pWriter.println(data);
             }
         } catch (IOException e) {
             System.out.println("An error occured!");
@@ -103,6 +104,7 @@ public class StudentManager {
                 "Birthday", "Gender");
         out.println(header);
         out.println(sep);
+        out.flush();
         ListIterator<Student> it = studentList.listIterator();
         while (it.hasNext()) {
             Student tmp = it.next();
@@ -111,6 +113,7 @@ public class StudentManager {
                     tmp.getStudentBirthday(), tmp.getStudentGender());
             out.println(data);
             out.println(sep);
+            out.flush();
         }
         out.println(".");
         out.flush();

@@ -114,7 +114,8 @@ public class Client {
         System.out.print("Please enter the student ID: ");
         String id = console.nextLine().trim();
         if (id != null && !id.isBlank()) {
-            out.printf("delete %s%s", id, System.getProperty("line.separator"));
+            String data = String.format("delete %s", id);
+            out.println(data);;
             out.flush();
         } else {
             System.out.println("Please enter a valid input!");
@@ -128,7 +129,8 @@ public class Client {
             System.out.print("Please enter the new CGPA (X.XX): ");
             String cgpa = console.nextLine().trim();
             if (cgpa != null && !cgpa.isBlank()) {
-                out.printf("modify %s %s%s", id, cgpa, System.getProperty("line.separator"));
+                String data = String.format("modify %s %s%s", id, cgpa);
+                out.println(data);;
                 out.flush();
             } else
                 System.out.println("Please enter a valid input!");
@@ -154,8 +156,8 @@ public class Client {
                         System.out.print("Please enter the student's gender (M/F): ");
                         String gender = console.nextLine().toUpperCase().trim();
                         if (gender != null && !gender.isBlank()) {
-                            out.printf("add %s %s %s %s %s%s", id, name, cgpa, birthday, gender,
-                                    System.getProperty("line.separator"));
+                            String data = String.format("add %s %s %s %s %s", id, name, cgpa, birthday, gender);
+                            out.println(data);
                             out.flush();
                         } else {
                             System.out.println("Please enter a valid input!");
