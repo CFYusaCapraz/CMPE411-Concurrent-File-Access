@@ -17,11 +17,10 @@ public class Server implements Runnable {
     @Override
     public void run() {
         if (StudentManager.loadStudentsFile(this.fileName)) {
-            try {
-                ServerSocket socket = new ServerSocket(PORT);
+            try (ServerSocket socket = new ServerSocket(PORT)) {
                 while (true) {
                     Socket childSocket = socket.accept();
-                    // Will imeplement the multithreaded childs here
+                    new Thread(new ClientHandler(childSocket)).start();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
