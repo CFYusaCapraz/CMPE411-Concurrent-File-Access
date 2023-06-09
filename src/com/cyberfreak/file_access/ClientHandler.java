@@ -36,8 +36,15 @@ public class ClientHandler implements Runnable {
                             StudentManager.modifyCGPA(fields[1], fields[2]);
                             break;
                         case "add":
+                            int offset = fields.length - 6;
+                            String name = "";
+                            for (int i = 0; i <= offset; i++) {
+                                name += fields[2 + i] + " ";
+                            }
+                            name = name.trim();
                             StudentManager
-                                    .addStudent(new Student(fields[1], fields[2], fields[3], fields[4], fields[5]));
+                                    .addStudent(new Student(fields[1], name, fields[3 + offset], fields[4 + offset],
+                                            fields[5 + offset]));
                             break;
                         case "disconnect":
                             flag = true;

@@ -42,7 +42,7 @@ public class StudentManager {
                 Student tmp = it.next();
                 pWriter.printf("%4s,%-30s,%4s,%10s,%1s%s", tmp.getStudentID(), tmp.getStudentName(),
                         tmp.getStudentCGPA(),
-                        tmp.getStudentBirthday(), tmp.getStudentGender(), System.getProperty("line.seperator"));
+                        tmp.getStudentBirthday(), tmp.getStudentGender(), System.getProperty("line.separator"));
             }
         } catch (IOException e) {
             System.out.println("An error occured!");
@@ -97,19 +97,22 @@ public class StudentManager {
     }
 
     public synchronized static void displayStudents(PrintWriter out) {
-        out.println("-".repeat(60));
-        out.printf("%4s | %-30s | %4s | %10s | %s%s", "ID", "Name Surname", "CGPA",
-                "Birthday", "Gender", System.getProperty("line.seperator"));
-        out.println("-".repeat(60));
-        out.flush();
+        String sep = "-".repeat(68);
+        out.println(sep);
+        String header = String.format("%-4s | %-30s | %4s | %-10s | %s |", "ID", "Name Surname", "CGPA",
+                "Birthday", "Gender");
+        out.println(header);
+        out.println(sep);
         ListIterator<Student> it = studentList.listIterator();
         while (it.hasNext()) {
             Student tmp = it.next();
-            out.printf("%4s | %-30s | %4s | %10s | %1s%s", tmp.getStudentID(), tmp.getStudentName(),
+            String data = String.format("%4s | %-30s | %4s | %10s | %-6s |", tmp.getStudentID(), tmp.getStudentName(),
                     tmp.getStudentCGPA(),
-                    tmp.getStudentBirthday(), tmp.getStudentGender(), System.getProperty("line.seperator"));
-            out.println("-".repeat(60));
-            out.flush();
+                    tmp.getStudentBirthday(), tmp.getStudentGender());
+            out.println(data);
+            out.println(sep);
         }
+        out.println(".");
+        out.flush();
     }
 }

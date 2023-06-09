@@ -22,18 +22,16 @@ public class Client {
         System.out.print("IP Address: ");
         String ip = consoleIn.nextLine().trim();
         System.out.print("Port Number: ");
-        int port = consoleIn.nextInt();
-        System.out.printf("Connecting to `%s:%d`%s", ip, port, System.getProperty("line.seperator"));
+        int port = Integer.parseInt(consoleIn.nextLine().trim());
+        System.out.printf("Connecting to `%s:%d`%s", ip, port, System.getProperty("line.separator"));
 
         try (Socket socket = new Socket(ip, port);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()))) {
-            while (true) {
-                if (cmd(consoleIn, in, out))
-                    continue;
-                else
-                    break;
-            }
+            boolean x;
+            do {
+                x = cmd(consoleIn, in, out);
+            } while (x);
             in.close();
             out.close();
             socket.close();
@@ -106,7 +104,9 @@ public class Client {
         out.flush();
         String line;
         while ((line = in.readLine()) != null) {
-            System.out.print(line);
+            if (line.equals("."))
+                break;
+            System.out.println(line);
         }
     }
 
@@ -114,7 +114,7 @@ public class Client {
         System.out.print("Please enter the student ID: ");
         String id = console.nextLine().trim();
         if (id != null && !id.isBlank()) {
-            out.printf("delete %s%s", id, System.getProperty("line.seperator"));
+            out.printf("delete %s%s", id, System.getProperty("line.separator"));
             out.flush();
         } else {
             System.out.println("Please enter a valid input!");
@@ -128,7 +128,7 @@ public class Client {
             System.out.print("Please enter the new CGPA (X.XX): ");
             String cgpa = console.nextLine().trim();
             if (cgpa != null && !cgpa.isBlank()) {
-                out.printf("modify %s %s%s", id, cgpa, System.getProperty("line.seperator"));
+                out.printf("modify %s %s%s", id, cgpa, System.getProperty("line.separator"));
                 out.flush();
             } else
                 System.out.println("Please enter a valid input!");
@@ -155,7 +155,7 @@ public class Client {
                         String gender = console.nextLine().toUpperCase().trim();
                         if (gender != null && !gender.isBlank()) {
                             out.printf("add %s %s %s %s %s%s", id, name, cgpa, birthday, gender,
-                                    System.getProperty("line.seperator"));
+                                    System.getProperty("line.separator"));
                             out.flush();
                         } else {
                             System.out.println("Please enter a valid input!");
