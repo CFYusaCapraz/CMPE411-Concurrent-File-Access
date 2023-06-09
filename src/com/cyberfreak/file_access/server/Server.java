@@ -29,9 +29,14 @@ public class Server implements Runnable {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Thread t = new Thread(new Server(8000, "students.txt"));
+        Server s = new Server(8000, "students.txt");
+        Thread t = new Thread(s);
         t.start();
+        String msg = String.format("[*] Server started listening on port %d", s.PORT);
+        System.out.println(msg);
         t.join();
+        System.out.println("Server closing...");
+        
     }
 
 }

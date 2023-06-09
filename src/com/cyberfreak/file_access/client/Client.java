@@ -18,7 +18,7 @@ public class Client {
         Scanner consoleIn = new Scanner(System.in);
 
         System.out.println("WELCOME");
-        System.out.println("Before using the service please enter the ip address and the port number of the server");
+        System.out.println("Before using the services please enter the ip address and the port number of the server");
         System.out.print("IP Address: ");
         String ip = consoleIn.nextLine().trim();
         System.out.print("Port Number: ");
@@ -49,7 +49,7 @@ public class Client {
             case 0:
                 return true;
             case 1:
-                display(in, out);
+                display(console, in, out);
                 return true;
             case 2:
                 delete(console, out);
@@ -64,6 +64,7 @@ public class Client {
                 System.out.println("Disconnecting from the server");
                 return false;
             case -1:
+                help();
                 return true;
         }
         return false;
@@ -99,14 +100,39 @@ public class Client {
         return result;
     }
 
-    private void display(BufferedReader in, PrintWriter out) throws IOException {
-        out.println("display");
-        out.flush();
-        String line;
-        while ((line = in.readLine()) != null) {
-            if (line.equals("."))
-                break;
-            System.out.println(line);
+    private void help() {
+        System.out.println("You have typed an unknown command!");
+        System.out.println("Here are the valid commands:");
+        System.out.println("DISPLAY \"You can see the student details\"");
+        System.out.println("ADD \"You can add a new student to system\"");
+        System.out.println("DELETE \"You can delete a student record\"");
+        System.out.println("MODIFY \"You can modify a student's CGPA record\"");
+        System.out.println("DISCONNECT \"To leave the server\"");
+    }
+
+    private void display(Scanner console, BufferedReader in, PrintWriter out) throws IOException {
+        System.out.println("Please enter a student ID");
+        System.out.println("Leave empty to see all students");
+        System.out.print("Student ID: ");
+        String id = console.nextLine().trim();
+        if (id == null || id.isEmpty() || id.isBlank()) {
+            out.println("display");
+            out.flush();
+            String line;
+            while ((line = in.readLine()) != null) {
+                if (line.equals("."))
+                    break;
+                System.out.println(line);
+            }
+        } else {
+            out.println("display " + id);
+            out.flush();
+            String line;
+            while ((line = in.readLine()) != null) {
+                if (line.equals("."))
+                    break;
+                System.out.println(line);
+            }
         }
     }
 
@@ -115,7 +141,8 @@ public class Client {
         String id = console.nextLine().trim();
         if (id != null && !id.isBlank()) {
             String data = String.format("delete %s", id);
-            out.println(data);;
+            out.println(data);
+            ;
             out.flush();
         } else {
             System.out.println("Please enter a valid input!");
@@ -130,7 +157,8 @@ public class Client {
             String cgpa = console.nextLine().trim();
             if (cgpa != null && !cgpa.isBlank()) {
                 String data = String.format("modify %s %s%s", id, cgpa);
-                out.println(data);;
+                out.println(data);
+                ;
                 out.flush();
             } else
                 System.out.println("Please enter a valid input!");

@@ -41,8 +41,8 @@ public class StudentManager {
             while (it.hasNext()) {
                 Student tmp = it.next();
                 String data = String.format("%4s,%-30s,%4s,%10s,%1s", tmp.getStudentID(), tmp.getStudentName(),
-                tmp.getStudentCGPA(),
-                tmp.getStudentBirthday(), tmp.getStudentGender());
+                        tmp.getStudentCGPA(),
+                        tmp.getStudentBirthday(), tmp.getStudentGender());
                 pWriter.println(data);
             }
         } catch (IOException e) {
@@ -117,5 +117,27 @@ public class StudentManager {
         }
         out.println(".");
         out.flush();
+    }
+
+    public synchronized static void displayOneStudent(PrintWriter out, String id) {
+        Student tmp = searchStudent(id);
+        if (tmp != null) {
+            String sep = "-".repeat(68);
+            out.println(sep);
+            String header = String.format("%-4s | %-30s | %4s | %-10s | %s |", "ID", "Name Surname", "CGPA",
+                    "Birthday", "Gender");
+            out.println(header);
+            out.println(sep);
+
+            String data = String.format("%4s | %-30s | %4s | %10s | %-6s |", tmp.getStudentID(), tmp.getStudentName(),
+                    tmp.getStudentCGPA(),
+                    tmp.getStudentBirthday(), tmp.getStudentGender());
+            out.println(data);
+            out.println(sep);
+            out.println(".");
+            out.flush();
+        } else {
+            out.println("Student not found!");
+        }
     }
 }
