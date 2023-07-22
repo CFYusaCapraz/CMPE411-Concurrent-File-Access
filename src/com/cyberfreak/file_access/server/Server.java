@@ -29,16 +29,22 @@ public class Server implements Runnable {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Server s;
-        int p = Integer.valueOf(args[0]);
-        String f = args[1];
-        if (p != 0 && f != null) {
-            s = new Server(p, f);
+        Server s = null;
+        int p;
+        String f;
+        if (args.length == 2) {
+            p = Integer.valueOf(args[0]);
+            f = args[1];
+            if (p != 0 && p >= 1025 && f != null) {
+                s = new Server(p, f);
 
-        } else {
+            } else {
+                s = new Server(8000, "students.txt");
+            }
+
+        }else {
             s = new Server(8000, "students.txt");
         }
-
         Thread t = new Thread(s);
         t.start();
         String msg = String.format("[*] Server started listening on port %d", s.PORT);

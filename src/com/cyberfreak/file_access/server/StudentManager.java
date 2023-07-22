@@ -6,11 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.ListIterator;
 
 public class StudentManager {
-    private static LinkedList<Student> studentList = new LinkedList<Student>();
+    private static ArrayList<Student> studentList = new ArrayList<Student>();
     private static String fileName;
 
     public static boolean loadStudentsFile(String studentsFileName) {

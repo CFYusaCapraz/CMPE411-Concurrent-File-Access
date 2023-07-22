@@ -80,7 +80,7 @@ public class ClientHandler implements Runnable {
             out.close();
             client.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error occured when transmittion of the data over TCP!");
         }
     }
 }
