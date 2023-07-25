@@ -36,6 +36,7 @@ public class Server implements Runnable {
             p = Integer.valueOf(args[0]);
             f = args[1];
             if (p != 0 && p >= 1025 && f != null) {
+                // file deepcode ignore PT: Password file will always be valid
                 s = new Server(p, f);
 
             } else {
